@@ -8,6 +8,7 @@ import javax.inject.Named;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.dao.AbstractFacade;
 import com.dao.AccountDAO;
 import com.dao.HibernateUtil;
 import com.dao.IAccountDAO;
@@ -39,7 +40,7 @@ public class AccountContrl implements Serializable {
 	}
 
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
-	IAccountDAO acDao;
+	AbstractFacade acDao;
 
 	public AccountContrl() {
 		acDao = new AccountDAO();
@@ -49,7 +50,7 @@ public class AccountContrl implements Serializable {
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 
 		System.out.println("create account" + account.getFirstName());
-		acDao.saveAccount(account);
+		acDao.saveEntity(account);
 
 		tx.commit();
 

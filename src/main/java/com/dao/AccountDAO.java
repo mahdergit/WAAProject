@@ -10,7 +10,13 @@ import org.hibernate.SessionFactory;
 import com.entity.Account;
 import com.sun.xml.ws.runtime.dev.Session;
 
-public class AccountDAO implements IAccountDAO{
+public class AccountDAO extends AbstractFacade<Account>{
+
+	public AccountDAO() {
+		super(Account.class);
+		// TODO Auto-generated constructor stub
+	}
+
 
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 	
@@ -25,21 +31,6 @@ public class AccountDAO implements IAccountDAO{
 		return sf.getCurrentSession().createQuery("select * from Account").list();
 	}
 
-	public Account loadAccount(int accountnumber) {
-		return (Account) sf.getCurrentSession().get(Account.class, accountnumber);
-	}
-
-	public void saveAccount(Account account) {
-//		Session session=null;
-//		Transaction tx=null;
-//		session=HibernateUtil.getSessionFactory().openSession();
-//		tx=session.
-		sf.getCurrentSession().save(account);
-	}
-
-	public void updateAccount(Account account) {
-		sf.getCurrentSession().saveOrUpdate(account);
-	}
 
 }
 
