@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 
 import com.entity.ShoppingCart;
 
-public class ShopingCartDAO{
+public class ShoppingCartDAO{
 
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 	
